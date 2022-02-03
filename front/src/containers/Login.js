@@ -32,7 +32,8 @@ export default class Login {
 				this.document.body.style.backgroundColor = "#fff";
 			});
 	};
-
+	//fix: login pour l'admin
+	// employee a été remplacé par admin pour autoriser l'utilisateur à accéder au dashboard
 	handleSubmitAdmin = (e) => {
 		e.preventDefault();
 		const user = {

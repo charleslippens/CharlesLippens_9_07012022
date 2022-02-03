@@ -18,16 +18,13 @@ const row = (bill) => {
     </tr>
     `;
 };
-
+//fix: trier les factures dans l'ordre décroissant
+// fonction sort décroissante
+// ex: 2012 - 2013 = -1
+// 2012 - 2012 = 0
+// 2013 - 2012 = 1
 const rows = (data) => {
-	let dataArray = [];
-	if (data) {
-		dataArray = data.sort(function (a, b) {
-			let dateA = new Date(a.date),
-				dateB = new Date(b.date);
-			return dateB - dateA;
-		});
-	}
+	data.sort((a, b) => (new Date(a.date) < new Date(b.date) ? 1 : -1));
 	return data && data.length ? data.map((bill) => row(bill)).join("") : "";
 };
 
