@@ -19,10 +19,8 @@ describe("Given I am connected as an Employee", () => {
 					type: "Employee",
 				})
 			);
-
 			const html = BillsUI({ data: [] });
 			document.body.innerHTML = html;
-
 			expect(document.querySelector("#layout-icon1").classList.contains("active-icon"));
 		});
 		// il y a un titre et un newbill bouton, doit s'afficher correctement
