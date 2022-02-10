@@ -59,22 +59,30 @@ export default class NewBill {
 			'e.target.querySelector(`input[data-testid="datepicker"]`).value',
 			e.target.querySelector(`input[data-testid="datepicker"]`).value
 		);
-		const email = JSON.parse(localStorage.getItem("user")).email;
-		const bill = {
-			email,
-			type: e.target.querySelector(`select[data-testid="expense-type"]`).value,
-			name: e.target.querySelector(`input[data-testid="expense-name"]`).value,
-			amount: parseInt(e.target.querySelector(`input[data-testid="amount"]`).value),
-			date: e.target.querySelector(`input[data-testid="datepicker"]`).value,
-			vat: e.target.querySelector(`input[data-testid="vat"]`).value,
-			pct: parseInt(e.target.querySelector(`input[data-testid="pct"]`).value) || 20,
-			commentary: e.target.querySelector(`textarea[data-testid="commentary"]`).value,
-			fileUrl: this.fileUrl,
-			fileName: this.fileName,
-			status: "pending",
-		};
-		this.updateBill(bill);
-		this.onNavigate(ROUTES_PATH["Bills"]);
+		// fix bug affichage titre vide
+		// Submit quand la valeur du nom de la dépense est supérieur à 5
+		if (e.target.querySelector(`input[data-testid='expense-name']`).value.length > 4) {
+			document.getElementById("errorExpenseName").classList.add("hideErrorMessage");
+			const email = JSON.parse(localStorage.getItem("user")).email;
+			const bill = {
+				email,
+				type: e.target.querySelector(`select[data-testid="expense-type"]`).value,
+				name: e.target.querySelector(`input[data-testid="expense-name"]`).value,
+				amount: parseInt(e.target.querySelector(`input[data-testid="amount"]`).value),
+				date: e.target.querySelector(`input[data-testid="datepicker"]`).value,
+				vat: e.target.querySelector(`input[data-testid="vat"]`).value,
+				pct: parseInt(e.target.querySelector(`input[data-testid="pct"]`).value) || 20,
+				commentary: e.target.querySelector(`textarea[data-testid="commentary"]`).value,
+				fileUrl: this.fileUrl,
+				fileName: this.fileName,
+				status: "pending",
+			};
+			this.updateBill(bill);
+			this.onNavigate(ROUTES_PATH["Bills"]);
+		} else {
+			document.getElementById("errorExpenseName").classList.remove("hideErrorMessage");
+			this.document.querySelector(`input[data-testid='expense-name']`).value = null;
+		}
 	};
 	// not need to cover this function by tests
 	updateBill = (bill) => {

@@ -70,7 +70,8 @@ select:focus {
 	display: none;
 }
 
-#errorFileType {
+#errorFileType,
+#errorExpenseName {
 	margin-top: 0.5rem;
 	font-size: 0.9rem;
 	color: red;
