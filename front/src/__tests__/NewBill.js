@@ -2,7 +2,7 @@ import { screen, fireEvent } from "@testing-library/dom";
 import store from "../__mocks__/store";
 import BillsUI from "../views/BillsUI.js";
 
-//test inégration POST
+//test intégration POST
 describe("When I navigate to Dashboard employee", () => {
 	test("Add a bill from mock API POST", async () => {
 		const postSpy = jest.spyOn(store, "post");
