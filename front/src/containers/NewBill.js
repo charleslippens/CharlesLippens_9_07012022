@@ -19,7 +19,7 @@ export default class NewBill {
 		e.preventDefault();
 		const file = this.document.querySelector(`input[data-testid="file"]`).files[0];
 		const fileName = file.name;
-		// new variables needed to check image format
+		// Nouvelle variable pour vérifier le format de l'image
 		const fileInput = this.document.querySelector(`input[data-testid="file"]`);
 		const fileAcceptedFormats = ["jpg", "jpeg", "png"];
 		const fileNameParts = fileName.split(".");
@@ -35,7 +35,7 @@ export default class NewBill {
 		if (!this.ImgFormatValide) {
 			// Si le format d'image n'est pas valide
 			fileInput.value = ""; // ... supprimer le fichier de l'input
-			fileInput.classList.add("is-invalide"); // ... ajouter la class is invalide pour dire à l'utilisateur que c'est invalide
+			fileInput.classList.add("is-invalid"); // ... ajouter la class is invalide pour dire à l'utilisateur que c'est invalide
 			fileInput.classList.remove("blue-border"); // ... supprime la classe blue-border
 			alert(
 				"Le format de votre fichier n'est pas pris en charge." +
@@ -44,7 +44,7 @@ export default class NewBill {
 			); // message d'erreur pour l'utilisateur
 		} else {
 			// Si le format de l'image est valide
-			fileInput.classList.remove("is-invalide"); // ... supprimer la classe is valide
+			fileInput.classList.remove("is-invalid"); // ... supprimer la classe is valide
 			fileInput.classList.add("blue-border"); // ... ajouter la classe border-blue
 			const formData = new FormData();
 			const email = JSON.parse(localStorage.getItem("user")).email;
@@ -76,7 +76,7 @@ export default class NewBill {
 		};
 		if (this.ImgFormatValide) {
 			//Si le format de l'image est valide
-			// Débuter l'upload de l'image et créer une nouvelle facture seulement quand le format de l'image est valider et le formulaire est complet
+			// Débuter l'upload de l'image et créer une nouvelle facture seulement quand le format de l'image est valide et le formulaire est complet
 			this.store
 				.bills()
 				.create({

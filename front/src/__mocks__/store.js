@@ -1,6 +1,7 @@
 import store from "./store";
 
 export default {
+	// Données pour test intégration GET
 	get: () => {
 		return Promise.resolve({
 			data: [
@@ -72,7 +73,7 @@ export default {
 			],
 		});
 	},
-
+	// Données pour test intégration POST
 	post: async (newBill) => {
 		const getStore = await store.get();
 

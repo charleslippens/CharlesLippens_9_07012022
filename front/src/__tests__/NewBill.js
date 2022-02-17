@@ -14,6 +14,7 @@ describe("Given I am connected as an employee", () => {
 	describe("When I am on NewBill page, there are a form", () => {
 		// Alors tous les entrées des formulaires doivent etre affichés correctement.
 		test("Then, all the form input should be render correctly", () => {
+			// construit l'interface utilisateur
 			const html = NewBillUI();
 			document.body.innerHTML = html;
 			const formNewBill = screen.getByTestId("form-new-bill");
@@ -44,13 +45,14 @@ describe("Given I am connected as an employee", () => {
 	//Alors  le nom du fichier doit etre affiché dans l'input, ImgformatValide doit etre à faux et une alerte doit affiché
 	describe("When I am on NewBill page, and a user upload a unaccepted format file", () => {
 		test("Then, the file name should not be displayed into the input, ImgFormatValide shoud be false and a alert should be displayed", () => {
+			// LocalStorage - Employe
 			window.localStorage.setItem(
 				"user",
 				JSON.stringify({
 					type: "Employee",
 				})
 			);
-
+			// construit l'interface utilisateur
 			const html = NewBillUI();
 			document.body.innerHTML = html;
 
@@ -71,7 +73,7 @@ describe("Given I am connected as an employee", () => {
 					files: [new File(["file.pdf"], "file.pdf", { type: "file/pdf" })],
 				},
 			});
-
+			// fonction simulée qui surveille les appels aux objets
 			jest.spyOn(window, "alert");
 			expect(alert).toHaveBeenCalled();
 
@@ -85,20 +87,23 @@ describe("Given I am connected as an employee", () => {
 	//Alors, le nom du fichier doit etre correctement affiché dans l'input et imgformatvalide doit etre vrai.
 	describe("When I am on NewBill page, and a user upload a accepted format file", () => {
 		test("Then, the file name should be correctly displayed into the input and ImgFormatValide shoud be true", () => {
+			// LocalStorage - Employe
+
 			window.localStorage.setItem(
 				"user",
 				JSON.stringify({
 					type: "Employee",
 				})
 			);
+			// construit l'interface utilisateur
 			const html = NewBillUI();
 			document.body.innerHTML = html;
-
+			// Init onNavigate
 			const onNavigate = (pathname) => {
 				document.body.innerHTML = ROUTES({ pathname });
 			};
 			const store = null;
-
+			// Init newBill
 			const newBill = new NewBill({
 				document,
 				onNavigate,
@@ -116,7 +121,7 @@ describe("Given I am connected as an employee", () => {
 					files: [new File(["file.png"], "file.png", { type: "image/png" })],
 				},
 			});
-
+			// affichage message alerte erreur
 			jest.spyOn(window, "alert");
 			expect(alert).not.toHaveBeenCalled();
 
@@ -131,13 +136,14 @@ describe("Given I am connected as an employee", () => {
 	// Alors la fonction handleSubmit doit etre appelé
 	describe("When I am on NewBill page, and the user click on submit button", () => {
 		test("Then, the handleSubmit function should be called", () => {
+			// LocalStorage - Employe
 			window.localStorage.setItem(
 				"user",
 				JSON.stringify({
 					type: "Employee",
 				})
 			);
-
+			// construit l'interface utilisateur
 			const html = NewBillUI();
 			document.body.innerHTML = html;
 
@@ -149,16 +155,17 @@ describe("Given I am connected as an employee", () => {
 				bills: jest.fn(() => newBill.store),
 				create: jest.fn(() => Promise.resolve({})),
 			};
-
+			// Init newBill
 			const newBill = new NewBill({ document, onNavigate, store, localStorage });
 
 			newBill.ImgFormatValide = true;
-
+			// EventListener qui soumet le formulaire
 			const formNewBill = screen.getByTestId("form-new-bill");
+			// mock de handleSubmit
 			const handleSubmit = jest.fn(newBill.handleSubmit);
 			formNewBill.addEventListener("submit", handleSubmit);
 			fireEvent.submit(formNewBill);
-
+			// handleChangeFile function doit etre appelé
 			expect(handleSubmit).toHaveBeenCalled();
 		});
 	});
