@@ -11,7 +11,7 @@ describe("Given I am connected as an Employee", () => {
 	// Test pour BillsUI.js
 	// Quand je suis sur la page bills il y a une icone bill sur le cote vertical, doit etre surligné
 	describe("When I am on Bills page, there are a bill icon in vertical layout", () => {
-		test("Then, the icon should be highlighted", () => {
+		test("Then, the bill icon in vertical layout should be highlighted", () => {
 			Object.defineProperty(window, "localStorage", { value: localStorageMock });
 			window.localStorage.setItem(
 				"user",
@@ -23,16 +23,7 @@ describe("Given I am connected as an Employee", () => {
 			document.body.innerHTML = html;
 			expect(document.querySelector("#layout-icon1").classList.contains("active-icon"));
 		});
-		// il y a un titre et un newbill bouton, doit s'afficher correctement
-		describe("When I am on Bills page, there are a title and a newBill button", () => {
-			test("Then, the title and the button should be render correctly", () => {
-				const html = BillsUI({ data: [] });
-				document.body.innerHTML = html;
 
-				expect(screen.getAllByText("Mes notes de frais")).toBeTruthy();
-				expect(screen.getByTestId("btn-new-bill")).toBeTruthy();
-			});
-		});
 		// il y a 4 bills, les données doivent afficher le nom, date, status, icone eye et
 		describe("When I am on Bills page, there are 4 bills", () => {
 			test("Then, bills data should be render 4 type, name, date, amount, status and eye icon", () => {
@@ -79,6 +70,16 @@ describe("Given I am connected as an Employee", () => {
 				expect(iconEye.textContent).toBeTruthy();
 			});
 		});
+		// il y a un titre et un newbill bouton, doit s'afficher correctement
+		describe("When I am on Bills page, there are a title and a newBill button", () => {
+			test("Then, the title and the button should be render correctly", () => {
+				const html = BillsUI({ data: [] });
+				document.body.innerHTML = html;
+
+				expect(screen.getAllByText("Mes notes de frais")).toBeTruthy();
+				expect(screen.getByTestId("btn-new-bill")).toBeTruthy();
+			});
+		});
 		describe("When I am on Bills page, there are 4 bills", () => {
 			test("Then, bills should be ordered from earliest to latest", () => {
 				const html = BillsUI({ data: bills });
@@ -95,7 +96,7 @@ describe("Given I am connected as an Employee", () => {
 				expect(dates).toEqual(datesSorted);
 			});
 		});
-		// pas de bills
+		// Quand il n'y a pas de factures
 		describe("When I am on Bills page, and there are no bills", () => {
 			test("Then, no bills should be shown", () => {
 				const html = BillsUI({ data: [] });
@@ -105,20 +106,20 @@ describe("Given I am connected as an Employee", () => {
 				expect(bill).toBeNull();
 			});
 		});
-		//loading
-		describe("When I am on Bills page, but it is loading", () => {
-			test("Then, Loading page should be rendered", () => {
-				const html = BillsUI({ loading: true });
-				document.body.innerHTML = html;
-				expect(screen.getAllByText("Loading...")).toBeTruthy();
-			});
-		});
-		// erreur
+		// Test erreur
 		describe("When I am on Dashboard page but back-end send an error message", () => {
 			test("Then, Error page should be rendered", () => {
 				const html = BillsUI({ error: "some error message" });
 				document.body.innerHTML = html;
 				expect(screen.getAllByText("Erreur")).toBeTruthy();
+			});
+		});
+		// Test loading
+		describe("When I am on Bills page, but it is loading", () => {
+			test("Then, Loading page should be rendered", () => {
+				const html = BillsUI({ loading: true });
+				document.body.innerHTML = html;
+				expect(screen.getAllByText("Loading...")).toBeTruthy();
 			});
 		});
 	});
