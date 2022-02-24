@@ -3,7 +3,7 @@ import ErrorPage from "./ErrorPage.js";
 import LoadingPage from "./LoadingPage.js";
 
 import Actions from "./Actions.js";
-
+// ajout ids pour les champs du tableau bill
 const row = (bill) => {
 	return `
     <tr data-testid="bill">
