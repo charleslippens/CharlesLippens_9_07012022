@@ -34,5 +34,5 @@ Kanban Notion: https://www.notion.so/a7a612fc166747e78d95aa38106a55ec?v=2a8d3553
 
 ## Rapport détaillé (en cours):
 
-Rapport détaillé des tests ( explication méthode, code +  commentaire code) : 
+Rapport détaillé des bugs et tests ( explication méthode, screenshot commentaire code) : 
 https://github.com/charleslippens/CharlesLippens_9_07012022/blob/main/P9_05_Rapport_d%C3%A9taill%C3%A9_bugs_tests.pdf
