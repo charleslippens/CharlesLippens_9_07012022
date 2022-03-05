@@ -33,6 +33,7 @@ export default class {
 	};
 
 	// not need to cover this function by tests
+	/* istanbul ignore next */
 
 	getBills = () => {
 		if (this.store) {
@@ -40,7 +41,6 @@ export default class {
 				.bills()
 				.list()
 				.then((snapshot) => {
-					/* istanbul ignore next */
 					const bills = snapshot.map((doc) => {
 						try {
 							return {
