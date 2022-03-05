@@ -10,7 +10,7 @@ Screenshot avec le rapport de tests Jest: https://github.com/charleslippens/Char
 
 Screenshot du rapport de couverture Jest: https://github.com/charleslippens/CharlesLippens_9_07012022/blob/main/P9_03_Screenshot_rapport_de_couverture_Jest.pdf
 
-PDF du plan End-To-End: https://github.com/charleslippens/CharlesLippens_9_07012022/blob/main/P9_04_Plan_test_E2E_parcours_employe.pdf
+PDF du plan End-To-End: https://github.com/charleslippens/CharlesLippens_9_07012022/blob/main/P9_04_Plan_test_En_To_End_parcours_employe.pdf
 
 
 ## Consignes:
@@ -34,4 +34,5 @@ Kanban Notion: https://www.notion.so/a7a612fc166747e78d95aa38106a55ec?v=2a8d3553
 
 ## Rapport détaillé (en cours):
 
-Rapport détaillé des tests ( explication méthode, code +  commentaire code) : https://github.com/charleslippens/CharlesLippens_9_07012022/blob/main/Rapport_d%C3%A9taill%C3%A9_tests.pdf
+Rapport détaillé des tests ( explication méthode, code +  commentaire code) : 
+https://github.com/charleslippens/CharlesLippens_9_07012022/blob/main/P9_05_Rapport_d%C3%A9taill%C3%A9_bugs_tests.pdf
